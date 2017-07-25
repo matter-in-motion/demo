@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <meta name="description" content="Matter in motion example app">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Matter in motion</h1>
+        <h2>Sample application</h2>
+        <button id='button-question'>?</button>
+        <button id='button-question-resource'>test?</button>
+        <button id='button-question-method'>test.get?</button>
+        <button id='button-get'>GET</button>
+        <button id='button-post'>POST</button>
+        <button id='button-sockets'>Websockets</button><br>
+        <textarea name="result" id="result" cols="80" rows="20"></textarea>
+      </header>
+    </div>
+
+<script>
+  var result = document.getElementById('result');
+  var body = [ 'test.get', {id: '5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b', r: 1} ];
+
+  var getResponse = function(xhr) {
+    if (xhr.status === 200) {
+      return JSON.parse(xhr.responseText);
+    }
+
+    return [];
+  }
+
+  var request = function(call, head, body) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api', true);
+
+    var mmHeader = { call: call };
+    if (head) {
+      mmHeader.head = head;
+    }
+
+    xhr.setRequestHeader('MM', JSON.stringify(mmHeader));
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.send(body ? JSON.stringify(body) : '');
+
+    xhr.onload = function() {
+      var res = getResponse(xhr);
+      console.log(res);
+      result.value += 'Status: ' + xhr.status + ' / Result: ' + JSON.stringify(res[1]) + '\n';
+    }
+  }
+
+  var buttonQuestion = document.getElementById('button-question');
+  buttonQuestion.addEventListener('click', function() {
+    request('?');
+  });
+
+  var buttonQuestionResource = document.getElementById('button-question-resource');
+  buttonQuestionResource.addEventListener('click', function() {
+    request('test?');
+  });
+
+  var buttonQuestionMethod = document.getElementById('button-question-method');
+  buttonQuestionMethod.addEventListener('click', function() {
+    request('test.get?');
+  });
+
+  var buttonPost = document.getElementById('button-post');
+  buttonPost.addEventListener('click', function() {
+    request('test.get', undefined, {id: '5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b', r: 1})
+  });
+
+  //get
+  var buttonGet = document.getElementById('button-get');
+  buttonGet.addEventListener('click', function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/test.get?id=5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b&r=1', true);
+    // xhr.setRequestHeader('Accept', 'application/json');
+    xhr.send();
+    xhr.onload = function() {
+      var res = getResponse(xhr);
+      console.log(res);
+      result.value += 'Status: ' + xhr.status + ' / Result: ' + JSON.stringify(res[1]) + '\n';
+    }
+  });
+
+  //websockets
+  var buttonWS = document.getElementById('button-sockets');
+  var conn = new WebSocket('ws://localhost:3000/api');
+
+  conn.onopen = function() {
+    console.log('ws opened');
+  };
+
+  conn.onclose = function() {
+    console.log('ws closed');
+  };
+
+  conn.onmessage = function(e) {
+    var res = JSON.parse(e.data);
+    console.log(res);
+    result.value += 'Result: ' + JSON.stringify(res[1]) + '\n';
+  }
+
+  buttonWS.addEventListener('click', function() {
+    conn.send(JSON.stringify(body));
+  });
+</script>
+  </body>
+</html>

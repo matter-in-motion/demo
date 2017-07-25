@@ -1,0 +1,31 @@
+{
+  "name": "mm-demo",
+  "version": "1.0.0",
+  "description": "Matter in Motion demo app",
+  "main": "''",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/matter-in-motion/demo.git"
+  },
+  "keywords": [
+    "rpc",
+    "app",
+    "mm",
+    "mmp",
+    "matter-in-motion"
+  ],
+  "dependencies": {
+    "matter-in-motion": "^1.0.0",
+    "mm-http": "^1.0.0",
+    "mm-websockets": "^1.0.0"
+  },
+  "author": "Alexey Novikov <v@2dubs.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matter-in-motion/demo/issues"
+  },
+  "homepage": "https://github.com/matter-in-motion/demo#readme"
+}
