@@ -20,7 +20,8 @@
   "dependencies": {
     "matter-in-motion": "^1.0.0",
     "mm-http": "^1.0.0",
-    "mm-websockets": "^1.0.0"
+    "mm-websockets": "^1.0.0",
+    "mm-nunjucks": "^1.0.0"
   },
   "author": "Alexey Novikov <v@2dubs.com>",
   "license": "MIT",
