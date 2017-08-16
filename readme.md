@@ -2,7 +2,8 @@
 
 1. Clone this repository.
 2. `npm install`
-3. http://localhost:3000
+3. `bin/mm worker --env=dev`
+4. http://localhost:3000
 
 
 License: MIT.
