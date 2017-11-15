@@ -2,10 +2,6 @@
   "name": "mm-demo",
   "version": "1.0.0",
   "description": "Matter in Motion demo app",
-  "main": "''",
-  "scripts": {
-    "test": "jasmine"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/matter-in-motion/demo.git"
@@ -18,7 +14,7 @@
     "matter-in-motion"
   ],
   "dependencies": {
-    "matter-in-motion": "^1.0.0",
+    "matter-in-motion": "^2.0.0",
     "mm-http": "^1.0.0",
     "mm-websockets": "^1.0.0",
     "mm-nunjucks": "^1.0.0"
