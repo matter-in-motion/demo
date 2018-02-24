@@ -23,7 +23,7 @@
 
 <script>
   var result = document.getElementById('result');
-  var body = [ 'test.get', {id: '5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b', r: 1} ];
+  var body = [ 'test.get', {id: '5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b'} ];
 
   var getResponse = function(xhr) {
     if (xhr.status === 200) {
@@ -49,7 +49,7 @@
     xhr.onload = function() {
       var res = getResponse(xhr);
       console.log(res);
-      result.value += 'Status: ' + xhr.status + ' / Result: ' + JSON.stringify(res[1]) + '\n';
+      result.value += 'Status: ' + xhr.status + ' / Result: ' + JSON.stringify(res[0] || res[1]) + '\n';
     }
   }
 
@@ -70,14 +70,14 @@
 
   var buttonPost = document.getElementById('button-post');
   buttonPost.addEventListener('click', function() {
-    request('test.getPromise', undefined, {id: '5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b', r: 1})
+    request('test.getPromise', undefined, {id: '5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b'})
   });
 
   //get
   var buttonGet = document.getElementById('button-get');
   buttonGet.addEventListener('click', function() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/test.get?id=5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b&r=1', true);
+    xhr.open('GET', '/api/test.get?id=5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b', true);
     // xhr.setRequestHeader('Accept', 'application/json');
     xhr.send();
     xhr.onload = function() {
