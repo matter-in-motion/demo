@@ -78,7 +78,6 @@
   buttonGet.addEventListener('click', function() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/api/test.get?id=5d6e6ce0-ca3a-11e5-a21a-0002a5d5c51b', true);
-    // xhr.setRequestHeader('Accept', 'application/json');
     xhr.send();
     xhr.onload = function() {
       var res = getResponse(xhr);

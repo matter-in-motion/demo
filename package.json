@@ -14,9 +14,9 @@
     "matter-in-motion"
   ],
   "dependencies": {
-    "matter-in-motion": "^2.0.0",
-    "mm-http": "^1.0.0",
-    "mm-websockets": "^1.0.0",
+    "matter-in-motion": "^3.0.0",
+    "mm-http": "^3.0.0",
+    "mm-websockets": "^3.0.0",
     "mm-nunjucks": "^1.0.0"
   },
   "author": "Alexey Novikov <v@2dubs.com>",
